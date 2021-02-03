@@ -1,16 +1,21 @@
-import { NavigationContainer } from '@react-navigation/native';
 import { StatusBar } from 'expo-status-bar';
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
+import { Provider } from 'react-redux';
 
-import MyTabs from './Navigation/Navigation';
+import { createStore } from 'redux';
+
+import reducer from './Store/reducer';
+const store = createStore(reducer)
+
+import Navigation from './Navigation/Navigation';
 import Menu from './Views/Menu'
 
 export default function App() {
   return (
-    <NavigationContainer>
-      <MyTabs />
-    </NavigationContainer>
+      <Provider store={store}>
+        <Navigation />
+      </Provider>
   );
 }
 

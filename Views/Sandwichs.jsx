@@ -1,20 +1,20 @@
 import React from 'react';
 import { ScrollView } from 'react-native';
 import {
-    useSelector,
-    useDispatch
-} from 'react-redux'
+    useSelector
+} from 'react-redux';
+
 import CardFood from '../Components/CardFood';
 
-export default function Menu () {
+export default function Sandwichs () {
 
-    const { menus } = useSelector(state => state)
-    
+    const { sandwichs } = useSelector(state => state);
+
     return (
         <ScrollView>
-            {menus.map((menu, index) => (
+            {sandwichs.map((sandwich, index) => (
                 <CardFood
-                    typeOfCommand={menu}
+                    typeOfCommand={sandwich}
                     key={index}
                 />
             ))}
