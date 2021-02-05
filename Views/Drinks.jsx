@@ -1,20 +1,19 @@
 import React from 'react';
 import { ScrollView } from 'react-native';
-import {
-    useSelector
-} from 'react-redux';
+import { useSelector } from 'react-redux';
 
 import CardFood from '../Components/CardFood';
 
 export default function Drinks () {
 
-    const { drinks } = useSelector(state => state);
+    const { foods } = useSelector(state => state);
 
     return (
         <ScrollView>
-            {drinks.map((drink, index) => (
+            {foods.filter(food => food.type === 'drink').map((drink, index) => (
                 <CardFood
                     typeOfCommand={drink}
+                    indexOfCommand={index}
                     key={index}
                 />
             ))}

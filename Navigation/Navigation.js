@@ -11,14 +11,14 @@ import Menu from '../Views/Menu';
 import Sandwichs from '../Views/Sandwichs';
 import Desserts from '../Views/Desserts';
 import Drinks from '../Views/Drinks';
-import Cart from '../Views/Cart';
 import Chat from '../Views/Chat';
+import Cart from '../Views/Cart';
 import Profile from '../Views/Profile';
 
 
 const Stack = createStackNavigator();
 
-const MyStacks = () => {
+const HomeStacks = () => {
     return (
         <Stack.Navigator>
             <Stack.Screen
@@ -48,6 +48,20 @@ const MyStacks = () => {
     )
 }
 
+const CartStacks = () => {
+    return (
+        <Stack.Navigator>
+            <Stack.Screen
+                name="Cart"
+                component={Cart}
+                options={{
+                    title: 'Mon Panier'
+                }}
+            />
+        </Stack.Navigator>
+    )
+}
+
 const Tab = createBottomTabNavigator();
 
 const MyTabs = () => {
@@ -55,7 +69,7 @@ const MyTabs = () => {
         <Tab.Navigator>
             <Tab.Screen
                 name="Home"
-                component={MyStacks}
+                component={HomeStacks}
                 options={{
                     tabBarLabel: 'Accueil',
                     tabBarIcon: ({ color, size }) => (
@@ -75,7 +89,7 @@ const MyTabs = () => {
             />
             <Tab.Screen
                 name="Cart"
-                component={Cart}
+                component={CartStacks}
                 options={{
                     tabBarLabel: 'Panier',
                     tabBarIcon: ({ color, size }) => (
@@ -100,7 +114,6 @@ const MyTabs = () => {
 export default function App() {
     return (
         <NavigationContainer>
-            {/* <MyStacks/> */}
             <MyTabs/>
         </NavigationContainer>
     )
