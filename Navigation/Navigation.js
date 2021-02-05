@@ -1,26 +1,77 @@
 import React from 'react';
+import { NavigationContainer } from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import { MaterialIcons } from '@expo/vector-icons'; 
 import { Feather } from '@expo/vector-icons';
 
+import Home from '../Views/Home';
 import Menu from '../Views/Menu';
-import Cart from '../Views/Cart';
+import Sandwichs from '../Views/Sandwichs';
+import Desserts from '../Views/Desserts';
+import Drinks from '../Views/Drinks';
 import Chat from '../Views/Chat';
+import Cart from '../Views/Cart';
 import Profile from '../Views/Profile';
+
+
+const Stack = createStackNavigator();
+
+const HomeStacks = () => {
+    return (
+        <Stack.Navigator>
+            <Stack.Screen
+                name="Home"
+                component={Home}
+            />
+            <Stack.Screen
+                name="Menu"
+                component={Menu}
+            />
+            <Stack.Screen
+                name="Sandwichs"
+                component={Sandwichs}
+            />
+            <Stack.Screen
+                name="Desserts"
+                component={Desserts}
+            />
+            <Stack.Screen
+                name="Drinks"
+                component={Drinks}
+                options={{
+                    title: 'Boissons'
+                }}
+            />
+        </Stack.Navigator>
+    )
+}
+
+const CartStacks = () => {
+    return (
+        <Stack.Navigator>
+            <Stack.Screen
+                name="Cart"
+                component={Cart}
+                options={{
+                    title: 'Mon Panier'
+                }}
+            />
+        </Stack.Navigator>
+    )
+}
 
 const Tab = createBottomTabNavigator();
 
-function MyTabs() {
+const MyTabs = () => {
     return (
-        <Tab.Navigator
-            initialRouteName="Menu"
-        >
+        <Tab.Navigator>
             <Tab.Screen
-                name="Menu"
-                component={Menu}
+                name="Home"
+                component={HomeStacks}
                 options={{
-                    tabBarLabel: 'Mon menu',
+                    tabBarLabel: 'Accueil',
                     tabBarIcon: ({ color, size }) => (
                         <MaterialIcons name="restaurant-menu" color={color} size={size} />
                     ),
@@ -38,7 +89,7 @@ function MyTabs() {
             />
             <Tab.Screen
                 name="Cart"
-                component={Cart}
+                component={CartStacks}
                 options={{
                     tabBarLabel: 'Panier',
                     tabBarIcon: ({ color, size }) => (
@@ -60,4 +111,10 @@ function MyTabs() {
     )
 }
 
-export default MyTabs;
+export default function App() {
+    return (
+        <NavigationContainer>
+            <MyTabs/>
+        </NavigationContainer>
+    )
+};

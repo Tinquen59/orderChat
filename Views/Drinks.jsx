@@ -4,15 +4,15 @@ import { useSelector } from 'react-redux';
 
 import CardFood from '../Components/CardFood';
 
-export default function Menu () {
+export default function Drinks () {
 
-    const { foods } = useSelector(state => state)
-    
+    const { foods } = useSelector(state => state);
+
     return (
         <ScrollView>
-            {foods.filter(food => food.type === 'menu').map((menu, index) => (
+            {foods.filter(food => food.type === 'drink').map((drink, index) => (
                 <CardFood
-                    typeOfCommand={menu}
+                    typeOfCommand={drink}
                     indexOfCommand={index}
                     key={index}
                 />
